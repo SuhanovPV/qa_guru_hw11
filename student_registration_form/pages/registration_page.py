@@ -1,4 +1,4 @@
-from selene import browser, be, have
+from selene import browser, be, have, command
 
 from student_registration_form import resources
 
@@ -7,6 +7,8 @@ class RegistrationPage:
 
     def open(self):
         browser.open('/automation-practice-form')
+        browser.driver.execute_script("$('#fixedban').remove()")
+        browser.driver.execute_script("$('footer').remove()")
         return self
 
     def fill_first_name(self, value):
@@ -39,6 +41,10 @@ class RegistrationPage:
     def fill_subjects(self, value):
         browser.element('#subjectsInput').type(value)
         browser.element('#subjectsContainer div[id^="react-select"]').click()
+        return self
+
+    def scroll_to_page(self):
+        browser.element('#subjectsInput').perform(command.js.scroll_into_view)
         return self
 
     def select_hobbies(self, value):
