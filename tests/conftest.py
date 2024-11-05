@@ -2,6 +2,7 @@ import pytest
 from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from utils import attach
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -33,4 +34,9 @@ def browser_set():
 
     yield
 
-    browser.close()
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_html(browser)
+    attach.add_video(browser)
+
+    browser.quit()
