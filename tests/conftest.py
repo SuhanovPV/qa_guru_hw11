@@ -9,7 +9,7 @@ def browser_set():
 
     selenoid_login = 'user1'
     selenoid_pass = '1234'
-    selenoid_url = 'https://selenoid.autotests.cloud'
+    selenoid_url = 'selenoid.autotests.cloud'
 
 
     options = Options()
